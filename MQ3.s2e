@@ -1,0 +1,71 @@
+{
+  "extensionName": "Alcohol_Sensor",
+  "description": "Reading Alcohol in mg/L - Arduino Mode Only",
+  "version": "1.0.1",
+  "author": "NEGENDO",
+  "homepage": "https://store.negendo.com/collections/maker-system",
+  "sort":0,
+  "javascriptURL":"js/MQ3.js",
+    "firmware":"1.0",
+    "extensionPort":0,
+  "blockSpecs": [
+        
+  [
+    "w",
+    "setup Alcohol Sensor pin %d.pin  R2 value %n",
+    "setupMQ3",
+     "A0",1000,
+      {
+        "inc" : "#include \"MQ3_alcohol.h\"\n",
+        "def" : "MQ3 mq3;\n",
+        "setup" : "mq3.setupMQ3({0},{1});\n",
+        "work" : "",
+        "loop" : ""
+      }
+    ],
+
+
+  [
+    "w",
+    "Alcohol Sensor calibrate",
+    "MQ3Calibrate",
+     
+      {
+        "inc" : "#include \"MQ3_alcohol.h\"\n",
+        "def" : "MQ3 mq3;\n",
+        "setup" : "",
+        "work" : "mq3.calibrateMQ3();\n",
+        "loop" : ""
+      }
+    ],
+    
+  [
+    "R",
+    "Get alcohol level",
+    "getMQ3",
+    
+      {
+        "inc" : "#include \"MQ3_alcohol.h\"\n",
+        "def" : "MQ3 mq3;\n",
+        "setup" : "",
+        "work" : "mq3.getAlcohol()",
+        "loop" : ""
+      }
+    ]
+  ],
+
+
+  "menus": {  
+    "pin":["A0","A1","A2","A3"]
+  },
+  "values":{
+    "A0":14,
+		"A1":15,
+		"A2":16,
+		"A3":17   
+
+  },
+  "translators":{
+          
+  }
+}
